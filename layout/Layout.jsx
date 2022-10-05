@@ -1,14 +1,12 @@
-import { AppBar, Box, Button, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Link as NativeLink, Stack, Toolbar } from "@mui/material";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
+import { Button } from "../components/common/Button";
 import { setCookie } from "../utils/cookie";
 
-type Props = React.PropsWithChildren<{
-  title?: string;
-}>;
-
-export const Layout = ({ children, title }: Props) => {
+export const Layout = ({ children, title }) => {
   const pageTitle = title ? `${title}` : "My App";
   const router = useRouter();
 
@@ -38,15 +36,19 @@ export const Layout = ({ children, title }: Props) => {
         >
           <Toolbar>
             <Box sx={{ flexGrow: 1, display: "flex" }}>
-              <Button
-                sx={() => ({
-                  textTransform: "none",
-                  color: selectedRoute === "employee" ? undefined : "black",
-                })}
-                size="large"
-              >
-                Employees
+              <Button sx={{ color: "black" }} size="large">
+                CRM
               </Button>
+              <Link href="/customer" passHref>
+                <NativeLink sx={{ textDecoration: "none" }}>
+                  <Button size="large">Customer</Button>
+                </NativeLink>
+              </Link>
+              <Link href="/agent" passHref>
+                <NativeLink sx={{ textDecoration: "none" }}>
+                  <Button size="large">Agent</Button>
+                </NativeLink>
+              </Link>
             </Box>
             <Button variant="contained" onClick={onLogout}>
               Logout
