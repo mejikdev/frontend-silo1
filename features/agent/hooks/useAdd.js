@@ -13,9 +13,9 @@ export const useAdd = () => {
     async (data) => {
       try {
         await mutateAsync(data);
-        router.push("/employee");
+        router.push("/agent");
       } catch (error) {
-        console.log("failed to create employee", error);
+        console.log("failed to create agent", error);
       }
     },
     [mutateAsync, router]

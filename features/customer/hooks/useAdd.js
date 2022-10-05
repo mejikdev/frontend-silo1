@@ -15,9 +15,9 @@ export const useAdd = () => {
     async (data) => {
       try {
         await mutateAsync(data);
-        router.push("/employee");
+        router.push("/customer");
       } catch (error) {
-        console.log("failed to create employee", error);
+        console.log("failed to create customer", error);
       }
     },
     [mutateAsync, router]

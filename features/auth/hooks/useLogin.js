@@ -15,7 +15,7 @@ export const useLogin = () => {
       try {
         const result = await mutateAsync(data);
         setCookie("token", result.id);
-        router.replace("/employee");
+        router.replace("/customer");
       } catch (error) {
         console.log(error);
       }
