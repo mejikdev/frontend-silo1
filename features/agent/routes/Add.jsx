@@ -8,7 +8,7 @@ export const AddAgent = React.memo(function AddAgent() {
   const { inputs, isLoading, methods, handleSubmit } = useAdd();
 
   return (
-    <Container>
+    <Container sx={{ mt: 4 }}>
       <Box>
         <Title>Add Agent</Title>
         <Form

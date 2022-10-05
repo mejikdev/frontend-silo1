@@ -8,7 +8,7 @@ export const AddCustomer = React.memo(function AddCustomer() {
   const { inputs, isLoading, methods, handleSubmit } = useAdd();
 
   return (
-    <Container>
+    <Container sx={{ mt: 4 }}>
       <Box>
         <Title>Add Customer</Title>
         <Form
