@@ -1,15 +1,27 @@
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as React from "react";
+import { useCreateCustomer } from "../../../api/features/customer";
+import { useGetAgents } from "../../../api/features/agent";
 
 export const useAdd = () => {
   const methods = useForm();
+  const router = useRouter();
 
-  const [isLoading, setIsloading] = React.useState(false);
+  const { data: agents } = useGetAgents();
+  const { mutateAsync, isLoading } = useCreateCustomer();
 
-  const handleSubmit = React.useCallback((data) => {
-    setIsloading(true);
-    console.log({ data });
-  }, []);
+  const handleSubmit = React.useCallback(
+    async (data) => {
+      try {
+        await mutateAsync(data);
+        router.push("/employee");
+      } catch (error) {
+        console.log("failed to create employee", error);
+      }
+    },
+    [mutateAsync, router]
+  );
 
   const inputs = React.useMemo(
     () => [
@@ -31,7 +43,10 @@ export const useAdd = () => {
         label: "Agent",
         placeholder: "Select agent",
         type: "select",
-        options: [{ value: "", label: "" }],
+        options: [...(agents ?? [])].map((item) => ({
+          value: item.id,
+          label: item.name,
+        })),
         validation: {
           required: {
             value: true,
@@ -40,7 +55,7 @@ export const useAdd = () => {
         },
       },
     ],
-    []
+    [agents]
   );
 
   return {

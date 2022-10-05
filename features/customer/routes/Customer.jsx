@@ -1,7 +1,7 @@
 import { Box, Link as NativeLink, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import * as React from "react";
+import { useGetCustomers } from "../../../api/features/customer";
 
 import { Button } from "../../../components/common/Button";
 import { CustomTable } from "../../../components/Table";
@@ -21,16 +21,15 @@ const columns = [
 ];
 
 export const Customer = React.memo(function Customer() {
-  const router = useRouter();
-  // const { data } = useGetEmployees();
+  const { data } = useGetCustomers();
 
   const rows = React.useMemo(() => {
-    // if (data?.length) {
-    //   return data.map((item, index) => ({ id: index + 1, ...item }));
-    // }
+    if (data?.length) {
+      return data.map((item, index) => ({ id: index + 1, ...item }));
+    }
 
     return [];
-  }, []);
+  }, [data]);
 
   return (
     <Stack sx={{ p: 4 }}>

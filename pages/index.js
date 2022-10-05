@@ -12,7 +12,7 @@ export default function Home({ token }) {
       return;
     }
 
-    router.replace("/employee");
+    router.replace("/customer");
   }, [router, token]);
 
   if (loading) {

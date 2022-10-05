@@ -1,15 +1,25 @@
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as React from "react";
+import { useCreateAgent } from "../../../api/features/agent";
 
 export const useAdd = () => {
   const methods = useForm();
+  const router = useRouter();
 
-  const [isLoading, setIsloading] = React.useState(false);
+  const { mutateAsync, isLoading } = useCreateAgent();
 
-  const handleSubmit = React.useCallback((data) => {
-    setIsloading(true);
-    console.log({ data });
-  }, []);
+  const handleSubmit = React.useCallback(
+    async (data) => {
+      try {
+        await mutateAsync(data);
+        router.push("/employee");
+      } catch (error) {
+        console.log("failed to create employee", error);
+      }
+    },
+    [mutateAsync, router]
+  );
 
   const inputs = React.useMemo(
     () => [
