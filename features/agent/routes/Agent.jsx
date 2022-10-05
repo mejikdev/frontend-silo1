@@ -7,7 +7,7 @@ import { Button } from "../../../components/common/Button";
 import { CustomTable } from "../../../components/Table";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "no", headerName: "ID", width: 90 },
   {
     field: "name",
     headerName: "Name",
@@ -20,7 +20,7 @@ export const Agent = React.memo(function Agent() {
 
   const rows = React.useMemo(() => {
     if (data?.length) {
-      return data.map((item, index) => ({ id: index + 1, ...item }));
+      return data.map((item, index) => ({ no: index + 1, ...item }));
     }
 
     return [];

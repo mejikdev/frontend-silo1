@@ -25,7 +25,7 @@ export const Customer = React.memo(function Customer() {
 
   const rows = React.useMemo(() => {
     if (data?.length) {
-      return data.map((item, index) => ({ id: index + 1, ...item }));
+      return data.map((item, index) => ({ no: index + 1, ...item }));
     }
 
     return [];
