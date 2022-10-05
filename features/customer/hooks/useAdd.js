@@ -39,7 +39,7 @@ export const useAdd = () => {
         },
       },
       {
-        name: "agentId",
+        name: "agent_id",
         label: "Agent",
         placeholder: "Select agent",
         type: "select",

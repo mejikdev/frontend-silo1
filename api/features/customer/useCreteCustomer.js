@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 
 export const createCustomer = (body) =>
-  axios.post(`/customer`, body).then((res) => res.data);
+  axios.post(`/customers`, body).then((res) => res.data);
 
 export const useCreateCustomer = (options) => {
   const queryClient = useQueryClient();
